@@ -14,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 import Database.Database_For_HumanManage;
-import Model.AdapterNhanVien;
+import Adapter.AdapterNhanVien;
 import User.Employees;
 
 public class Home_Activity extends AppCompatActivity {
@@ -58,20 +58,42 @@ public class Home_Activity extends AppCompatActivity {
         list = new ArrayList<>();
         adapterNhanVien = new AdapterNhanVien(this, list);
         lv.setAdapter(adapterNhanVien);
+
+        lv.setOnItemClickListener((parent, view, position, id) -> {
+            Employees selected = list.get(position);
+
+            Intent intent = new Intent(Home_Activity.this, Detail_Activity.class);
+            intent.putExtra("originalName", selected.employeeName);
+            intent.putExtra("name", selected.employeeName);
+            intent.putExtra("phone", selected.employeePhone);
+            intent.putExtra("ngaysinh", selected.employeeDateOfBirth);
+            intent.putExtra("chucvu", selected.employeeChucVu);
+            intent.putExtra("luong", selected.employeeLuong);
+            startActivity(intent);
+        });
+
     }
 
 
     private void readData() {
         Cursor cursor = databaseForHumanManage.getReadableDatabase().rawQuery(
-                "SELECT " + Database_For_HumanManage.TABLE_EMPLOYEE_NAME + ", " +
-                        Database_For_HumanManage.TABLE_EMPLOYEE_CHUCVU +
+                "SELECT " +
+                        Database_For_HumanManage.TABLE_EMPLOYEE_NAME + ", " +
+                        Database_For_HumanManage.TABLE_EMPLOYEE_PHONE + ", " +
+                        Database_For_HumanManage.TABLE_EMPLOYEE_NGAYSINH + ", " +
+                        Database_For_HumanManage.TABLE_EMPLOYEE_CHUCVU + ", " +
+                        Database_For_HumanManage.TABLE_EMPLOYEE_LUONG +
                         " FROM " + Database_For_HumanManage.TABLE_EMPLOYEE,
                 null);
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 String name = cursor.getString(0);
-                String chucvu = cursor.getString(1);
-                list.add(new Employees(name, chucvu));
+                String phone = cursor.getString(1);
+                String ngaysinh = cursor.getString(2);
+                String chucvu = cursor.getString(3);
+                String luong = cursor.getString(4);
+
+                list.add(new Employees(name, phone, ngaysinh, chucvu, luong));
             } while (cursor.moveToNext());
             cursor.close();
         }

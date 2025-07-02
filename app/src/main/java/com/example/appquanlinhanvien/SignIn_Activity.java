@@ -50,6 +50,7 @@ public class SignIn_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
+
                 if(validateInput(email, password)){
                     if(databaseForHumanManage.checkUserToLogin(email, password)){
                         String name = databaseForHumanManage.getUserNameByEmail(email);

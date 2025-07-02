@@ -13,6 +13,13 @@
         android:theme="@style/Theme.AppQuanLiNhanVien"
         tools:targetApi="31">
         <activity
+            android:name=".ChangeInfo_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false"
+            android:label="@string/title_activity_detail" />
+        <activity
             android:name=".Detail_Activity"
             android:exported="false" />
         <activity

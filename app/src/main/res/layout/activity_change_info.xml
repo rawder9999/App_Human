@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_page_signup"
+    tools:context=".ChangeInfo_Activity">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:text="Sửa Thông Tin Nhân Viên"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/changeName"
+        android:layout_width="334dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Họ và Tên"
+        android:padding="12dp"
+        android:layout_gravity="center"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/changePhone"
+        android:layout_width="334dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Phone"
+        android:layout_gravity="center"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/changeDate"
+        android:layout_width="334dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Ngày Sinh"
+        android:layout_gravity="center"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/changeChucVu"
+        android:layout_width="334dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Chức Vụ"
+        android:layout_gravity="center"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/changeLuong"
+        android:layout_width="334dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Lương"
+        android:layout_gravity="center"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="250dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#5600BCD4"
+        android:fontFamily="sans-serif"
+        android:text="Cập Nhật"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+
+</LinearLayout>

@@ -21,10 +21,10 @@ public class Database_For_HumanManage  extends SQLiteOpenHelper {
     public static final String TABLE_EMPLOYEE = "TABLE_EMPLOYEE";
     private static final String TABLE_EMPLOYEE_ID = "TABLE_EMPLOYEE_ID";
     public static final String TABLE_EMPLOYEE_NAME = "TABLE_EMPLOYEE_NAME";
-    private static final String TABLE_EMPLOYEE_PHONE = "TABLE_EMPLOYEE_PHONE";
+    public static final String TABLE_EMPLOYEE_PHONE = "TABLE_EMPLOYEE_PHONE";
     public static final String TABLE_EMPLOYEE_CHUCVU = "TABLE_EMPLOYEE_CHUCVU";
-    private static final String TABLE_EMPLOYEE_NGAYSINH = "TABLE_EMPLOYEE_NGAYSINH";
-    private static final String TABLE_EMPLOYEE_LUONG = "TABLE_EMPLOYEE_LUONG";
+    public static final String TABLE_EMPLOYEE_NGAYSINH = "TABLE_EMPLOYEE_NGAYSINH";
+    public static final String TABLE_EMPLOYEE_LUONG = "TABLE_EMPLOYEE_LUONG";
 
     public Database_For_HumanManage(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -142,4 +142,26 @@ public class Database_For_HumanManage  extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    // Hàm Update thông tin nhân viên
+    public boolean updateEmployee(Employees employees){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TABLE_EMPLOYEE_NAME, employees.employeeName);
+        contentValues.put(TABLE_EMPLOYEE_PHONE, employees.employeePhone);
+        contentValues.put(TABLE_EMPLOYEE_NGAYSINH, employees.employeeDateOfBirth);
+        contentValues.put(TABLE_EMPLOYEE_CHUCVU, employees.employeeChucVu);
+        contentValues.put(TABLE_EMPLOYEE_LUONG, employees.employeeLuong);
+
+        long result = sqLiteDatabase.update(TABLE_EMPLOYEE, contentValues, TABLE_EMPLOYEE_NAME + " = ?", new String[]{employees.employeeName});
+        return result > 0;
+    }
+
+    // Hàm delete nhân viên
+    public boolean deleteEmployeeByName(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete(TABLE_EMPLOYEE, TABLE_EMPLOYEE_NAME + " = ?", new String[]{name});
+        return result > 0;
+    }
+
 }
+
