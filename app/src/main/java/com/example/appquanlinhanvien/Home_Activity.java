@@ -16,6 +16,11 @@ import java.util.ArrayList;
 import Database.Database_For_HumanManage;
 import Adapter.AdapterNhanVien;
 import User.Employees;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import android.widget.ImageView;
+
 
 public class Home_Activity extends AppCompatActivity {
     Database_For_HumanManage databaseForHumanManage;
@@ -24,6 +29,9 @@ public class Home_Activity extends AppCompatActivity {
     AdapterNhanVien adapterNhanVien;
     FloatingActionButton btnAdd;
     TextView txtAccount;
+    DrawerLayout drawerLayout;
+    NavigationView navView;
+    ImageView imageView3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +46,27 @@ public class Home_Activity extends AppCompatActivity {
         if (username != null && !username.isEmpty()) {
             txtAccount.setText("Xin chào, " + username);
         }
+        drawerLayout = findViewById(R.id.drawer_layout);
+
+        navView = findViewById(R.id.nav_view);
+
+        imageView3 = findViewById(R.id.imageView3);
+
+        imageView3.setOnClickListener(v -> {
+            drawerLayout.openDrawer(GravityCompat.START);
+        });
+
+        navView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_change_password) {
+                startActivity(new Intent(this, Forget_Activity.class));
+            } else if (id == R.id.nav_logout) {
+                startActivity(new Intent(this, SignIn_Activity.class));
+                finish();
+            }
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
+        });
 
         btnAdd = findViewById(R.id.btnAdd);
 
